@@ -1,7 +1,6 @@
 package nextstep.ladder;
 
 import nextstep.ladder.domain.Line;
-import nextstep.ladder.domain.LineFactory;
 import nextstep.ladder.fixture.CurrentOnlyPointsStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -19,7 +18,7 @@ public class LineTest {
     @MethodSource("lineMoveFixture")
     @DisplayName("[성공] 라인의 좌표 정보를 기반으로 위치를 이동시킨다.")
     void 라인_이동(int startPosition, int expectedPosition, List<Boolean> currentPoints) {
-        Line line = LineFactory.of(new CurrentOnlyPointsStrategy(), currentPoints);
+        Line line = Line.of(new CurrentOnlyPointsStrategy(), currentPoints);
         assertThat(line.move(startPosition)).isEqualTo(expectedPosition);
     }
 

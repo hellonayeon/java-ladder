@@ -5,6 +5,16 @@ import java.util.List;
 
 public class RandomPointsStrategy implements PointsGenerateStrategy<Integer> {
 
+    private static final RandomPointsStrategy INSTANCE = new RandomPointsStrategy();
+
+    private RandomPointsStrategy() {
+
+    }
+
+    public static RandomPointsStrategy get() {
+        return INSTANCE;
+    }
+
     @Override
     public List<Point> generate(Integer pointParam) {
         List<Point> points = new ArrayList<>();
