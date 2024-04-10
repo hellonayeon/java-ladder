@@ -15,9 +15,7 @@ public class Ladder {
     private final List<Line> lines;
 
     public static Ladder of(int pointSize, int height) {
-        PointsGenerateStrategy<Integer> strategy = new RandomPointsStrategy();
-
-        List<Line> lines = Stream.generate(() -> Line.of(strategy, pointSize))
+        List<Line> lines = Stream.generate(() -> Line.of(RandomPointsStrategy.get(), pointSize))
                 .limit(height)
                 .collect(Collectors.toUnmodifiableList());
         return new Ladder(lines);
