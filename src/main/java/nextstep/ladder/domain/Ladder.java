@@ -6,13 +6,20 @@ import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Ladder {
 
     public static final int MIN_LADDER_HEIGHT = 1;
     private final List<Line> lines;
 
-    public static Ladder of(List<Line> lines) {
+    public static Ladder of(int pointSize, int height) {
+        PointsGenerateStrategy<Integer> strategy = new RandomPointsStrategy();
+
+        List<Line> lines = Stream.generate(() -> Line.of(strategy, pointSize))
+                .limit(height)
+                .collect(Collectors.toUnmodifiableList());
         return new Ladder(lines);
     }
 

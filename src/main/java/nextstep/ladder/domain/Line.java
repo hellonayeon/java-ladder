@@ -7,7 +7,11 @@ public class Line {
 
     private final List<Point> points;
 
-    public Line(List<Point> points) {
+    public static <T> Line of(PointsGenerateStrategy<T> strategy, T pointParam) {
+        return new Line(Collections.unmodifiableList(strategy.generate(pointParam)));
+    }
+
+    private Line(List<Point> points) {
         this.points = points;
     }
 

@@ -1,7 +1,6 @@
 package nextstep.ladder.controller;
 
 import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.LadderFactory;
 import nextstep.ladder.domain.Participant;
 import nextstep.ladder.domain.Participants;
 import nextstep.ladder.ui.InputView;
@@ -17,9 +16,9 @@ public class LadderGameController {
 
             Participants participants = Participants.of(InputView.readParticipantNames());
             List<String> prizes = InputView.readLadderGamePrizes(participants.numberOf());
-            int ladderHeight = InputView.readLadderMaxHeight();
+            int height = InputView.readLadderMaxHeight();
 
-            Ladder ladder = LadderFactory.of(participants.numberOf(), ladderHeight);
+            Ladder ladder = Ladder.of(participants.numberOf(), height);
             ResultView.printLadder(participants, ladder);
             ResultView.printPrizes(prizes);
 
